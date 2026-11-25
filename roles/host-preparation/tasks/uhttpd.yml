@@ -1,0 +1,19 @@
+---
+# Move LuCI web UI off standard HTTP/HTTPS ports 80/443
+# Frees these ports for Traefik to use later
+
+- name: Set uhttpd to listen on port 8080 for HTTP
+  ansible.builtin.lineinfile:
+    path: /etc/config/uhttpd
+    regexp: "^list listen_http.*"
+    line: "list listen_http '0.0.0.0:8080'"
+    backup: yes
+  notify: restart uhttpd
+
+- name: Set uhttpd to listen on port 8443 for HTTPS
+  ansible.builtin.lineinfile:
+    path: /etc/config/uhttpd
+    regexp: "^list listen_https.*"
+    line: "list listen_https '0.0.0.0:8443'"
+    backup: yes
+  notify: restart uhttpd

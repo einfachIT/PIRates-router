@@ -1,0 +1,11 @@
+---
+# Main tasks for host-preparation role
+
+- name: Include uhttpd port change
+  ansible.builtin.include_tasks: uhttpd.yml
+
+- name: Include firewall configuration
+  ansible.builtin.include_tasks: firewall.yml
+
+- name: Include kernel modules and tailscale
+  ansible.builtin.include_tasks: tailscale.yml

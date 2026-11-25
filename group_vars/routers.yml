@@ -1,0 +1,3 @@
+---
+# Target device
+ansible_user: root

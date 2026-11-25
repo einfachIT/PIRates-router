@@ -1,0 +1,23 @@
+---
+# Playbook for PI-Routes router setup
+# Runs on: NanoPi R6S (192.168.2.1)
+# Prerequisites: SSH key-based root access, Python3 on target
+
+- name: Configure PI-Routes router host
+  hosts: pi-routers
+  become: yes
+  gather_facts: yes
+
+  handlers:
+    - name: restart uhttpd
+      ansible.builtin.command:
+        cmd: /etc/init.d/uhttpd restart
+      changed_when: true
+
+    - name: restart firewall
+      ansible.builtin.command:
+        cmd: fw4 reload
+      changed_when: true
+
+  roles:
+    - host-preparation
