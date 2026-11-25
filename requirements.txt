@@ -1,0 +1,3 @@
+# Ansible packages for PI-Routes automation
+# Minimal set: ansible bundle pulls in all dependencies (cryptography, jinja2, pyyaml, etc.)
+ansible>=8.0
